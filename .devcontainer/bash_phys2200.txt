@@ -1,0 +1,17 @@
+# Use arrow keys for command history navigation
+# See https://stackoverflow.com/a/1030206/5145820 for explanation
+if [[ $- == *i* ]]
+then
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
+fi
+
+alias ll='/usr/bin/ls -l --color=never'
+alias ls='/usr/bin/ls --color=never'
+
+# Enable multithreading by default in julia REPL
+export JULIA_NUM_THREADS=auto
+
+# Bash writes history only when a session ends. If a Codespace times out or is stopped ungracefully, 
+# the history may be lost. Save every command history as it is executed.
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
